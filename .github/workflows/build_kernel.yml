@@ -20,7 +20,7 @@ jobs:
       - name: pull kernel and complier
         run: |
           echo "拉取源码和编译器"
-          git clone --depth=1 git@github.com:MTK6893/android_kernel_xiaomi_mt6893.git -b ares kernel_src  #修改内核源码地址和分支名称
+          git clone --depth=1 https://github.com/MTK6893/android_kernel_xiaomi_mt6893.git -b ares kernel_src  #修改内核源码地址和分支名称
           echo "拉取源码完成"
           git clone --depth=1 https://github.com/kdrag0n/proton-clang -b master
           echo "拉取编译器完成"
