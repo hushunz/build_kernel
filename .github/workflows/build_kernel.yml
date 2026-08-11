@@ -27,7 +27,7 @@ jobs:
       - name: build kernel
         run: |
           echo "开始编译内核"
-          wget https://raw.githubusercontent.com/jsdizkcksv/build_kernel/main/build_tool.sh  #修改为fork之后的地址
+          wget https://raw.githubusercontent.com/hushunz/build_kernel/main/build_tool.sh  #修改为fork之后的地址
           chmod +x build_tool.sh
           ./build_tool.sh
       - name : upload 
