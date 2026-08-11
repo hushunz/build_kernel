@@ -35,9 +35,9 @@ jobs:
         if: always()
         with:
           name: kernel
-          path: ${{ github.workspace }}/kernel_src/Image.gz-dtb
+          path: ${{ github.workspace }}/kernel_src/Image.gz
 #       - name: Release
 #         uses: softprops/action-gh-release@v1
 #         with:
-#           files: ${{ github.workspace }}/kernel_src/Image.gz-dtb
+#           files: ${{ github.workspace }}/kernel_src/Image.gz
 
