@@ -48,7 +48,7 @@ clean(){
 build_kernel(){
 	export KBUILD_BUILD_USER="zahi0"  
 	export KBUILD_BUILD_HOST="zahi0-server"  
-	make $args vendor/msm8937_defconfig #修改配置文件
+	make $args k6889v1_64_defconfig #修改配置文件
 	if [ $? -ne 0 ]; then
       		exit 0
         fi
@@ -95,5 +95,5 @@ CROSS_COMPILE_ARM32=$gcc_32_path"
 cd kernel_src
 clean
 build_kernel
-cp ./out/arch/arm64/boot/Image.gz-dtb Image.gz-dtb
+cp ./out/arch/arm64/boot/Image.gz Image.gz
 cd ..
