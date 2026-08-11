@@ -1,0 +1,8 @@
+#!/bin/bash
+# 智能 汇编器路由：检测 x86 参数 (--64 / --32) → 系统 as, 否则 → aarch64 as
+for arg in "$@"; do
+  case "$arg" in
+    --64|--32) exec /usr/bin/as "$@" ;;
+  esac
+done
+exec /usr/bin/aarch64-linux-gnu-as "$@"
