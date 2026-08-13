@@ -1,8 +1,6 @@
 name: build_kernel
-
 on:
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -12,10 +10,10 @@ jobs:
         run: |
           echo "安装依赖"
           sudo apt update -y
-          # NOTE: gcc-multilib conflicts with gcc-aarch64-linux-gnu; do not install both.
+          # gcc-multilib 与 gcc-aarch64-linux-gnu 冲突，不能同时装
           sudo apt install -y bc bison build-essential ccache curl flex git gnupg gperf \
             libncurses5-dev libssl-dev lzop python3 zip zstd unzip \
-            gcc-aarch64-linux-gnu
+            gcc-aarch64-linux-gnu libelf-dev
       - name: pull kernel and complier
         run: |
           echo "拉取源码和编译器"
@@ -30,16 +28,17 @@ jobs:
           cp scripts/as-wrapper "$CLANG/as"
           chmod +x "$CLANG/as"
           echo "as -> $(ls -la $CLANG/as)"
-          echo "LD -> $CLANG/ld.lld"
       - name: build kernel
         run: |
           echo "开始编译内核"
-          wget https://raw.githubusercontent.com/hushunz/build_kernel/main/build_tool.sh
-          chmod +x build_tool.sh
-          ./build_tool.sh
-      - name : upload
+          bash build_tool.sh
+      - name: upload
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: kernel
-          path: ${{ github.workspace }}/kernel_src/Image.gz
+          name: kernel-cezanne
+          path: |
+            ${{ github.workspace }}/kernel_src/Image.gz
+            ${{ github.workspace }}/kernel_src/Image
+            ${{ github.workspace }}/kernel_src/dtb
+            ${{ github.workspace }}/kernel_src/dtbo.img
