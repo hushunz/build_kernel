@@ -19,7 +19,7 @@ jobs:
       - name: pull kernel and complier
         run: |
           echo "拉取源码和编译器"
-          git clone --depth=1 https://github.com/hushunz/android_kernel_xiaomi_mt6885.git -b main kernel_src
+          git clone --depth=1 https://github.com/hushunz/android_kernel_xiaomi_mt6885.git -b cgroup-v2 kernel_src
           echo "拉取源码完成"
           git clone --depth=1 https://github.com/kdrag0n/proton-clang -b master
           echo "拉取编译器完成"
